@@ -18,6 +18,21 @@ cp .env.example .env
 uvicorn src.main:app --reload
 ```
 
+## Docker
+
+Desde la raiz del repositorio:
+
+```bash
+docker compose up --build
+```
+
+Servicios:
+
+- backend: `http://localhost:8000`
+- postgres: `localhost:5432`
+
+La base se inicializa al arrancar el contenedor del backend usando `src.core.init_db`.
+
 ## Estado actual
 
 El proyecto contiene solo la estructura base del backend:
