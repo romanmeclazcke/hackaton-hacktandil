@@ -22,11 +22,3 @@ class UserRepository:
     def get_by_email(self, email: str) -> User | None:
         statement = select(User).where(User.email == email)
         return self.db.scalar(statement)
-
-    def get_by_username(self, username: str) -> User | None:
-        statement = select(User).where(User.username == username)
-        return self.db.scalar(statement)
-
-    def list(self) -> list[User]:
-        statement = select(User).order_by(User.created_at.desc())
-        return list(self.db.scalars(statement).all())

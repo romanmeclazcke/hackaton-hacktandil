@@ -4,3 +4,11 @@ class UserAlreadyExistsError(Exception):
 
 class UserNotFoundError(Exception):
     pass
+
+
+class CompanyAlreadyExistsError(Exception):
+    pass
+
+
+class CompanyNotFoundError(Exception):
+    pass

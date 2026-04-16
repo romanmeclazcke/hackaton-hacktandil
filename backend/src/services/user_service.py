@@ -2,22 +2,28 @@ import uuid
 
 from sqlalchemy.orm import Session
 
-from src.models.user import User
 from src.core.exceptions.exceptions import UserAlreadyExistsError, UserNotFoundError
+from src.models.user import User
+from src.repositories.company_repository import CompanyRepository
 from src.repositories.user_repository import UserRepository
 from src.schemas.user import UserCreate
 from src.services.password_service import PasswordService
 
+
 class UserService:
     def __init__(self, db: Session) -> None:
         self.repository = UserRepository(db)
+        self.company_repository = CompanyRepository(db)
         self.password_service = PasswordService()
 
-    def create_user(self, payload: UserCreate):
+    def create_user(self, payload: UserCreate) -> User:
         existing_email = self.repository.get_by_email(str(payload.email))
         if existing_email is not None:
             raise UserAlreadyExistsError("Email already registered")
 
+        existing_company = self.company_repository.get_by_email(str(payload.email))
+        if existing_company is not None:
+            raise UserAlreadyExistsError("Email already registered by a company")
 
         hashed_password = self.password_service.hash_password(payload.password)
 
@@ -29,12 +35,11 @@ class UserService:
         )
         return self.repository.create(user)
 
-    def get_user(self, user_id: uuid.UUID):
+    def get_user(self, user_id: uuid.UUID) -> User:
         user = self.repository.get_by_id(user_id)
         if user is None:
             raise UserNotFoundError("User not found")
         return user
-
 
     def verify_user_password(self, plain_password: str, hashed_password: str) -> bool:
         return self.password_service.verify_password(plain_password, hashed_password)
