@@ -12,3 +12,7 @@ class CompanyAlreadyExistsError(Exception):
 
 class CompanyNotFoundError(Exception):
     pass
+
+
+class InvalidCredentialsError(Exception):
+    pass

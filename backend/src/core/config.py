@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     app_host: str = Field(default="0.0.0.0", alias="APP_HOST")
     app_port: int = Field(default=8000, alias="APP_PORT")
     api_prefix: str = "/api/v1"
+    jwt_secret_key: str = Field(default="change-this-secret-in-production", alias="JWT_SECRET_KEY")
+    jwt_algorithm: str = Field(default="HS256", alias="JWT_ALGORITHM")
+    jwt_expire_minutes: int = Field(default=60, alias="JWT_EXPIRE_MINUTES")
     database_url: str = Field(
         default="postgresql+psycopg://postgres:postgres@localhost:5432/plan_render",
         alias="DATABASE_URL",
