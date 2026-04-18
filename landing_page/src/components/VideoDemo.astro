@@ -1,0 +1,184 @@
+---
+---
+
+<section id="demo" class="relative py-32 overflow-hidden bg-surface-900">
+  <!-- Background decoration -->
+  <div class="orb w-[400px] h-[400px] bg-accent-600/10 top-0 right-0"></div>
+  <div class="orb w-[300px] h-[300px] bg-brand-600/10 bottom-0 left-0"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-accent-500/30 text-accent-300 text-xs font-medium mb-6"
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="text-accent-400">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        Demo en vivo
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
+        Mirá cómo funciona
+        <span class="gradient-text"> en acción</span>
+      </h2>
+      <p class="text-lg text-slate-400 leading-relaxed">
+        En menos de 30 segundos pasás de un plano 2D a un espacio 3D completamente navegable.
+        Así de simple. Así de poderoso.
+      </p>
+    </div>
+
+    <!-- Video container -->
+    <div class="reveal delay-200 max-w-4xl mx-auto">
+      <div
+        class="relative rounded-2xl overflow-hidden glass border border-white/10 shadow-2xl shadow-black/50"
+        id="video-container"
+      >
+        <!-- Browser chrome top bar -->
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-surface-800/50">
+          <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+          <div class="flex-1 mx-4">
+            <div class="h-6 rounded-md bg-white/5 flex items-center px-3 max-w-xs mx-auto">
+              <span class="text-[11px] text-slate-500">app.viz3d.io/visualizer</span>
+            </div>
+          </div>
+          <div class="flex gap-1.5">
+            <div class="w-4 h-4 rounded bg-white/5"></div>
+            <div class="w-4 h-4 rounded bg-white/5"></div>
+          </div>
+        </div>
+
+        <!-- Video placeholder / embed area -->
+        <div class="relative aspect-video bg-surface-800 group cursor-pointer" id="video-wrapper">
+          <!-- Thumbnail background -->
+          <div class="absolute inset-0 bg-gradient-to-br from-surface-800 via-surface-700 to-surface-800">
+            <!-- Animated 3D room background -->
+            <svg viewBox="0 0 800 450" class="w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
+              <!-- Large room perspective -->
+              <polygon points="160,360 400,440 640,360 400,280" fill="rgba(59,92,245,0.1)" stroke="rgba(91,134,252,0.3)" stroke-width="1"/>
+              <polygon points="160,80 160,360 400,280 400,0" fill="rgba(59,92,245,0.15)" stroke="rgba(91,134,252,0.25)" stroke-width="1"/>
+              <polygon points="640,80 640,360 400,280 400,0" fill="rgba(139,92,246,0.15)" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+              <!-- Top -->
+              <polygon points="160,80 400,0 640,80 400,160" fill="rgba(59,92,245,0.08)" stroke="rgba(91,134,252,0.15)" stroke-width="1"/>
+
+              <!-- Windows -->
+              <rect x="190" y="120" width="120" height="90" rx="4" fill="rgba(147,196,255,0.1)" stroke="rgba(91,134,252,0.4)" stroke-width="1.5"/>
+              <line x1="250" y1="120" x2="250" y2="210" stroke="rgba(91,134,252,0.3)" stroke-width="1"/>
+              <line x1="190" y1="165" x2="310" y2="165" stroke="rgba(91,134,252,0.3)" stroke-width="1"/>
+
+              <!-- Door -->
+              <rect x="490" y="170" width="80" height="120" rx="3" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.4)" stroke-width="1.5"/>
+              <circle cx="503" cy="232" r="5" fill="rgba(167,139,250,0.7)"/>
+
+              <!-- Furniture details -->
+              <rect x="200" y="300" width="160" height="45" rx="6" fill="rgba(59,92,245,0.3)" stroke="rgba(91,134,252,0.5)" stroke-width="1.5"/>
+              <rect x="212" y="280" width="30" height="25" rx="4" fill="rgba(59,92,245,0.35)" stroke="rgba(91,134,252,0.4)" stroke-width="1"/>
+              <rect x="338" y="280" width="30" height="25" rx="4" fill="rgba(59,92,245,0.35)" stroke="rgba(91,134,252,0.4)" stroke-width="1"/>
+
+              <!-- Grid floor -->
+              <line x1="280" y1="440" x2="400" y2="280" stroke="rgba(91,134,252,0.06)" stroke-width="1"/>
+              <line x1="340" y1="445" x2="460" y2="285" stroke="rgba(91,134,252,0.06)" stroke-width="1"/>
+              <line x1="160" y1="330" x2="640" y2="330" stroke="rgba(91,134,252,0.05)" stroke-width="1"/>
+              <line x1="160" y1="360" x2="640" y2="360" stroke="rgba(91,134,252,0.05)" stroke-width="1"/>
+            </svg>
+          </div>
+
+          <!-- Gradient overlay para play button -->
+          <div class="absolute inset-0 bg-surface-900/40 group-hover:bg-surface-900/20 transition-colors duration-300"></div>
+
+          <!-- Play button -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button
+              id="play-btn"
+              class="relative flex items-center justify-center w-20 h-20 rounded-full bg-white/10 border-2 border-white/30 group-hover:bg-brand-600/80 group-hover:border-brand-400 transition-all duration-300 group-hover:scale-110 animate-pulse-glow"
+              aria-label="Reproducir demo"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="white"
+                class="ml-1"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <!-- Ripple rings -->
+              <span class="absolute inset-0 rounded-full border border-white/20 scale-125 opacity-0 group-hover:opacity-100 transition-all duration-500"></span>
+              <span class="absolute inset-0 rounded-full border border-white/10 scale-150 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100"></span>
+            </button>
+          </div>
+
+          <!-- Duration badge -->
+          <div class="absolute bottom-4 right-4 px-2.5 py-1 rounded-md bg-black/60 text-white text-xs font-medium">
+            2:34
+          </div>
+
+          <!-- Video title overlay -->
+          <div class="absolute bottom-4 left-4">
+            <p class="text-xs text-slate-400">Demo completo</p>
+            <p class="text-sm text-white font-medium">Visualizador 3D de Apartamentos — Hackaton Hacktandil 2026</p>
+          </div>
+
+          <!-- YouTube embed (hidden, revealed on play) -->
+          <div id="youtube-embed" class="absolute inset-0 hidden">
+            <iframe
+              id="yt-iframe"
+              class="w-full h-full"
+              src=""
+              title="Demo Visualizador 3D"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video caption -->
+      <p class="text-center text-sm text-slate-500 mt-4">
+        Demo grabado durante la Hackaton Hacktandil 2026 · Duración: 2 min 34 seg
+      </p>
+    </div>
+
+    <!-- Metrics below video -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-16 reveal delay-300">
+      {[
+        { icon: "⚡", value: "< 2s", label: "Tiempo de procesamiento" },
+        { icon: "🏠", value: "360°", label: "Navegación libre" },
+        { icon: "🤖", value: "IA", label: "Detección automática" },
+        { icon: "📱", value: "Web", label: "Sin instalación" },
+      ].map(({ icon, value, label }) => (
+        <div class="text-center p-4 rounded-xl glass border border-white/5">
+          <div class="text-2xl mb-1">{icon}</div>
+          <div class="text-xl font-bold text-white">{value}</div>
+          <div class="text-xs text-slate-500 mt-0.5">{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const playBtn = document.getElementById("play-btn");
+  const videoWrapper = document.getElementById("video-wrapper");
+  const youtubeEmbed = document.getElementById("youtube-embed");
+  const ytIframe = document.getElementById("yt-iframe") as HTMLIFrameElement;
+
+  // Replace this URL with your actual YouTube video ID when available
+  // For now shows the demo interface without autoplay
+  const YOUTUBE_VIDEO_ID = ""; // e.g. "dQw4w9WgXcQ"
+
+  playBtn?.addEventListener("click", () => {
+    if (YOUTUBE_VIDEO_ID) {
+      // Load YouTube embed
+      ytIframe.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0`;
+      youtubeEmbed?.classList.remove("hidden");
+      playBtn.style.display = "none";
+    } else {
+      // Scroll to the 3D app section or show a message
+      const featuresSection = document.getElementById("features");
+      featuresSection?.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+</script>

@@ -1,0 +1,137 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Subí tu plano",
+    description:
+      "Cargá la imagen de tu plano arquitectónico en cualquier formato (JPG, PNG, PDF). Sin requisitos especiales de calidad.",
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
+    color: "brand",
+  },
+  {
+    number: "02",
+    title: "La IA analiza el plano",
+    description:
+      "Nuestro modelo de Computer Vision detecta paredes, puertas, ventanas y ambientes. El proceso tarda menos de 2 segundos.",
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
+    color: "accent",
+  },
+  {
+    number: "03",
+    title: "Explorá en 3D",
+    description:
+      "En segundos tenés tu apartamento en 3D. Navegá libremente, explorá cada ambiente y compartí el link con quien quieras.",
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`,
+    color: "pink",
+  },
+];
+---
+
+<section id="how-it-works" class="relative py-32 bg-surface-900 overflow-hidden">
+  <div class="orb w-[350px] h-[350px] bg-brand-600/8 top-[20%] left-[-100px]"></div>
+  <div class="orb w-[250px] h-[250px] bg-accent-600/8 bottom-[20%] right-[-80px]"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-pink-500/30 text-pink-300 text-xs font-medium mb-6"
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        Cómo funciona
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight mb-6">
+        Tres pasos.
+        <span class="gradient-text"> Sin complicaciones.</span>
+      </h2>
+      <p class="text-lg text-slate-400 leading-relaxed">
+        Diseñado para ser tan simple que cualquier persona pueda usarlo,
+        sin conocimientos técnicos ni de arquitectura.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid lg:grid-cols-3 gap-8 relative">
+      <!-- Connector line (desktop only) -->
+      <div
+        class="hidden lg:block absolute top-16 left-[calc(33.333%-24px)] right-[calc(33.333%-24px)] h-px"
+        style="background: linear-gradient(90deg, rgba(91,134,252,0.4) 0%, rgba(167,139,250,0.4) 50%, rgba(244,114,182,0.4) 100%);"
+      ></div>
+
+      {
+        steps.map(({ number, title, description, icon, color }, i) => {
+          const colorClasses = {
+            brand: {
+              number: "text-brand-400",
+              icon: "from-brand-500/20 to-brand-600/10 border-brand-500/30 text-brand-400",
+              dot: "bg-brand-500",
+            },
+            accent: {
+              number: "text-accent-400",
+              icon: "from-accent-500/20 to-accent-600/10 border-accent-500/30 text-accent-400",
+              dot: "bg-accent-500",
+            },
+            pink: {
+              number: "text-pink-400",
+              icon: "from-pink-500/20 to-pink-600/10 border-pink-500/30 text-pink-400",
+              dot: "bg-pink-500",
+            },
+          }[color];
+
+          return (
+            <div class={`reveal text-center lg:text-left`} style={`animation-delay: ${i * 0.15}s`}>
+              <!-- Step number + icon -->
+              <div class="relative inline-flex flex-col items-center lg:items-start mb-6">
+                <!-- Number badge -->
+                <div
+                  class={`text-6xl font-black ${colorClasses?.number} opacity-20 leading-none select-none`}
+                >
+                  {number}
+                </div>
+                <!-- Icon -->
+                <div
+                  class={`-mt-6 w-14 h-14 rounded-2xl bg-gradient-to-br ${colorClasses?.icon} border flex items-center justify-center relative z-10`}
+                >
+                  <span set:html={icon} />
+                  <!-- Active dot -->
+                  <span
+                    class={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full ${colorClasses?.dot} border-2 border-surface-900 animate-pulse`}
+                  />
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold text-white mb-3">{title}</h3>
+              <p class="text-slate-400 leading-relaxed text-sm lg:text-base">{description}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- Tech stack mention -->
+    <div class="mt-20 reveal">
+      <div class="text-center mb-8">
+        <p class="text-sm text-slate-500">Construido con tecnología de punta</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        {
+          [
+            { name: "React 19", icon: "⚛️" },
+            { name: "Three.js", icon: "🎮" },
+            { name: "React Three Fiber", icon: "🔺" },
+            { name: "Python + FastAPI", icon: "🐍" },
+            { name: "Computer Vision", icon: "👁️" },
+            { name: "Zustand", icon: "🐻" },
+          ].map(({ name, icon }) => (
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/5 text-slate-400 text-sm hover:border-white/10 hover:text-slate-300 transition-all">
+              <span>{icon}</span>
+              <span>{name}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

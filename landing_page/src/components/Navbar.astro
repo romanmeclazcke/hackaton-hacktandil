@@ -1,0 +1,100 @@
+---
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div
+        class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2L2 7L12 12L22 7L12 2Z"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+          <path
+            d="M2 17L12 22L22 17"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+          <path
+            d="M2 12L12 17L22 12"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <span class="font-bold text-lg text-white tracking-tight"
+        >Viz<span class="gradient-text">3D</span></span
+      >
+    </a>
+
+    <!-- Nav links -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a
+        href="#features"
+        class="text-sm text-slate-400 hover:text-white transition-colors">Características</a
+      >
+      <a
+        href="#demo"
+        class="text-sm text-slate-400 hover:text-white transition-colors">Demo</a
+      >
+      <a
+        href="#how-it-works"
+        class="text-sm text-slate-400 hover:text-white transition-colors"
+        >Cómo funciona</a
+      >
+    </nav>
+
+    <!-- CTA -->
+    <a
+      href="#demo"
+      class="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-brand-600/25"
+    >
+      Ver demo
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<script>
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add(
+        "bg-surface-900/80",
+        "backdrop-blur-xl",
+        "border-b",
+        "border-white/5"
+      );
+    } else {
+      navbar?.classList.remove(
+        "bg-surface-900/80",
+        "backdrop-blur-xl",
+        "border-b",
+        "border-white/5"
+      );
+    }
+  });
+</script>
